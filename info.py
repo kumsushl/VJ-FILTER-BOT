@@ -10,7 +10,7 @@ from Script import script
 id_pattern = re.compile(r'^.\d+$')
 
 # Bot information
-SESSION = environ.get('SESSION', 'TechVJBot')
+SESSION = environ.get('SESSION', '')
 API_ID = int(environ.get('API_ID', '28429143'))
 API_HASH = environ.get('API_HASH', '15afc60d067490eee8d34112487ac829')
 BOT_TOKEN = environ.get('BOT_TOKEN', "8111743148:AAF376dS0daPQL0SrrGn6DxajWnNZDsNX7U")
@@ -41,7 +41,7 @@ auth_channel = environ.get('AUTH_CHANNEL', '-1001532885306') # give your force s
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 
 # This Channel Is For When User Request Any File Name With command or hashtag like - /request or #request
-reqst_channel = environ.get('REQST_CHANNEL', '')
+reqst_channel = environ.get('REQST_CHANNEL', '-1001765520183')
 REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_channel) else None
 
 # This Channel Is For Index Request 
@@ -61,7 +61,7 @@ DELETE_CHANNELS = [int(dch) if id_pattern.search(dch) else dch for dch in enviro
 # MongoDB information
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://sushiljhu:OqujYgW9i5J9lWRy@cluster0.cdammbt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")   # IF Multiple Database Is False Then Fill Only This Database Url.
 DATABASE_NAME = environ.get('DATABASE_NAME', "sushiljhu")
-COLLECTION_NAME = environ.get('COLLECTION_NAME', 'vjcollection')
+COLLECTION_NAME = environ.get('COLLECTION_NAME', '')
 
 MULTIPLE_DATABASE = bool(environ.get('MULTIPLE_DATABASE', False)) # Set True or False
 
@@ -89,7 +89,7 @@ PUBLIC_FILE_CHANNEL = environ.get('PUBLIC_FILE_CHANNEL', 'squid_game_1and2') # P
 
 # Links
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/web_request_file')
-CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/webseries_alltype')
+CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/squid_game_1and2')
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'web_request_file') # Support Chat Link Without https:// or @
 OWNER_LNK = environ.get('OWNER_LNK', 'https://t.me/Jamesbond_007_k')
 
