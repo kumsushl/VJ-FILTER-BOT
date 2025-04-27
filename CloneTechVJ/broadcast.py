@@ -10,7 +10,7 @@ from database.users_chats_db import db
 from pyrogram.errors import *
 from CloneTechVJ.database.clone_bot_userdb import clonedb
         
-@Client.on_message(filters.command("broadcast"))
+@Client.on_message(filters.command("broadcst"))
 async def pm_broadcast(bot, message):
     me = await bot.get_me()
     owner = await db.get_bot(me.id)
