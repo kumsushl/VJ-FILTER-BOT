@@ -91,40 +91,40 @@ async def start(client, message):
         await k.edit("<b>Your message is successfully deleted!!!</b>")
         return
         
-    elif data.startswith("all"):
-        files = temp.GETALL.get(file_id)
-        if not files:
-            return await message.reply('<b><i>No such file exist.</b></i>')
-        filesarr = []
-        for file in files:
-            vj_file_id = file['file_id']
-            k = await temp.BOT.send_cached_media(chat_id=PUBLIC_FILE_CHANNEL, file_id=vj_file_id)
-            vj = await client.get_messages(PUBLIC_FILE_CHANNEL, k.id)
-            mg = getattr(vj, vj.media.value)
-            file_id = mg.file_id
-            files_ = await get_file_details(vj_file_id)
-            files1 = files_
-            title = ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files1['file_name'].split()))
-            size=get_size(files1['file_size'])
-            f_caption=files1['caption']
-            if f_caption is None:
-                f_caption = f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files1['file_name'].split()))}"
-            if cd["update_channel_link"] != None:
-                up = cd["update_channel_link"]
-                button = [[
-                    InlineKeyboardButton('🍿 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🍿', url=up)
-                ]]
-                reply_markup=InlineKeyboardMarkup(button)
-            else:
-                reply_markup=None
+   elif data.startswith("all"):
+    files = temp.GETALL.get(file_id)
+    if not files:
+        return await message.reply('<b><i>No such file exist.</b></i>')
+    filesarr = []
+    for file in files:
+        vj_file_id = file['file_id']
+        k = await temp.BOT.send_cached_media(chat_id=PUBLIC_FILE_CHANNEL, file_id=vj_file_id)
+        vj = await client.get_messages(PUBLIC_FILE_CHANNEL, k.id)
+        mg = getattr(vj, vj.media.value)
+        file_id = mg.file_id
+        files_ = await get_file_details(vj_file_id)
+        files1 = files_
+        title = ' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files1['file_name'].split()))
+        size=get_size(files1['file_size'])
+        f_caption=files1['caption']
+        if f_caption is None:
+            f_caption = f"{' '.join(filter(lambda x: not x.startswith('[') and not x.startswith('@'), files1['file_name'].split()))}"
+        if cd["update_channel_link"] != None:
+            up = cd["update_channel_link"]
+            button = [[
+                InlineKeyboardButton('🍿 ᴊᴏɪɴ ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ 🍿', url=up)
+            ]]
+            reply_markup=InlineKeyboardMarkup(button)
+        else:
+            reply_markup=None
        
-            msg = await client.send_cached_media(
-                chat_id=message.from_user.id,
-                file_id=file_id,
-                caption=f_caption,
-                protect_content=False,
-                reply_markup=reply_markup
-            )
+        msg = await client.send_cached_media(
+            chat_id=message.from_user.id,
+            file_id=file_id,
+            caption=f_caption,
+            protect_content=False,
+            reply_markup=reply_markup
+        )
             filesarr.append(msg)
         k = await client.send_message(chat_id = message.from_user.id, text=f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie Files/Videos will be deleted in <b><u>10 mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this ALL Files/Videos to your Saved Messages and Start Download there</i></b>")
         await asyncio.sleep(600)
