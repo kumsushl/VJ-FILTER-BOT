@@ -2,6 +2,11 @@
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
+# At the top of your file
+broadcast_enabled = False  # Default to enabled
+
+
+
 import re
 from pymongo.errors import DuplicateKeyError
 import motor.motor_asyncio
