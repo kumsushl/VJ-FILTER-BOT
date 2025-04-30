@@ -10,6 +10,11 @@ from database.users_chats_db import db
 from pyrogram.errors import *
 from CloneTechVJ.database.clone_bot_userdb import clonedb
         
+# At the top of your file
+broadcast_enabled = True  # Default to enabled
+
+
+
 @Client.on_message(filters.command("broadcast"))
 async def pm_broadcst(bot, message):
     me = await bot.get_me()
