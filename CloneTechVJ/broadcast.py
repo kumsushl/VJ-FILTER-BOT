@@ -11,7 +11,7 @@ from pyrogram.errors import *
 from CloneTechVJ.database.clone_bot_userdb import clonedb
         
 # At the top of your file
-broadcast_enabled = True  # Default to enabled
+broadcast_enabled = False  # Default to enabled
 
 
 
