@@ -42,6 +42,15 @@ async def delete_all_referal_users(user_id):
     user_db = mydb[str(user_id)]
     user_db.delete_many({}) 
 
+broadcast_config = {"enabled": False}
+
+async def is_broadcast_enabled():
+    return broadcast_config["enabled"]
+
+async def set_broadcast_enabled(status: bool):
+    broadcast_config["enabled"] = status
+
+
 default_setgs = {
     'button': BUTTON_MODE,
     'file_secure': PROTECT_CONTENT,
