@@ -2,8 +2,6 @@
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
-# At the top of your file
-broadcast_enabled = True  # Default to enabled
 
 
 
@@ -42,13 +40,26 @@ async def delete_all_referal_users(user_id):
     user_db = mydb[str(user_id)]
     user_db.delete_many({}) 
 
-broadcast_config = {"enabled": False}
+# Assuming 'db' is your motor or pymongo database object
+from motor.motor_asyncio import AsyncIOMotorClient
 
-async def is_broadcast_enabled():
-    return broadcast_config["enabled"]
+client = AsyncIOMotorClient("your_mongodb_url")
+db = client["your_database_name"]
+config_col = db["config"]  # You can name the collection anything
 
+# Enable or disable broadcast
 async def set_broadcast_enabled(status: bool):
-    broadcast_config["enabled"] = status
+    await config_col.update_one(
+        {"_id": "broadcast_toggle"},
+        {"$set": {"enabled": status}},
+        upsert=True
+    )
+
+# Check if broadcast is enabled
+async def is_broadcast_enabled() -> bool:
+    doc = await config_col.find_one({"_id": "broadcast_toggle"})
+    return doc.get("enabled", True) if doc else True  # Default to True
+
 
 
 default_setgs = {
