@@ -8,6 +8,39 @@ from database.users_chats_db import db
 from info import ADMINS
 from utils import broadcast_messages, broadcast_messages_group
         
+# At the top of your file
+broadcast_enabled = True  # Default to enabled
+
+
+@Client.on_message(filters.command("enable_broadcast") & filters.user(ADMINS))
+async def enable_broadcast(client, message):
+    global broadcast_enabled
+    broadcast_enabled = True
+    await message.reply_text("✅ Broadcast has been enabled.")
+
+
+@Client.on_message(filters.command("disable_broadcast") & filters.user(ADMINS))
+async def disable_broadcast(client, message):
+    global broadcast_enabled
+    broadcast_enabled = False
+    await message.reply_text("🚫 Broadcast has been disabled.")
+
+@Client.on_message(filters.command("broadcast") & filters.user(ADMINS))
+async def pm_broadcast(bot, message):
+    global broadcast_enabled
+    if not broadcast_enabled:
+        return await message.reply_text("❌ Broadcast is currently disabled by an admin.")
+    # ... rest of the function ...
+@Client.on_message(filters.command("grp_broadcast") & filters.user(ADMINS))
+async def broadcast_group(bot, message):
+    global broadcast_enabled
+    if not broadcast_enabled:
+        return await message.reply_text("❌ Group Broadcast is currently disabled by an admin.")
+    # ... rest of the function ...
+
+
+
+
 @Client.on_message(filters.command("broadcast") & filters.user(ADMINS))
 async def pm_broadcast(bot, message):
     b_msg = await bot.ask(chat_id = message.from_user.id, text = "Now Send Me Your Broadcast Message")
