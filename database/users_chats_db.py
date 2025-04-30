@@ -3,7 +3,7 @@
 # Ask Doubt on telegram @KingVJ01
 
 # At the top of your file
-broadcast_enabled = False  # Default to enabled
+broadcast_enabled = True  # Default to enabled
 
 
 
