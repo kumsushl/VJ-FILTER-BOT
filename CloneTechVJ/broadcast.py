@@ -10,7 +10,7 @@ from database.users_chats_db import db
 from pyrogram.errors import *
 from CloneTechVJ.database.clone_bot_userdb import clonedb
         
-@Client.on_message(filters.command("brodcast"))
+@Client.on_message(filters.command("broadcast"))
 async def pm_broadcst(bot, message):
     me = await bot.get_me()
     owner = await db.get_bot(me.id)
@@ -29,7 +29,7 @@ async def pm_broadcst(bot, message):
         success = 0
         async for user in users:
             if 'user_id' in user:
-                pti, sh = await brodcast_messages(me.id, int(user['user_id']), b_msg)
+                pti, sh = await broadcast_messages(int(user['id']), b_msg)
                 if pti:
                     success += 1
                 elif pti == False:
@@ -58,22 +58,22 @@ async def pm_broadcst(bot, message):
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
-async def brodcast_messages(bot_id, user_id, message):
+async def broadcast_messages(user_id, message):
     try:
         await message.copy(chat_id=user_id)
         return True, "Success"
     except FloodWait as e:
         await asyncio.sleep(e.value)
-        return await brodcast_messages(bot_id, user_id, message)
+        return await broadcast_messages(user_id, message)
     except InputUserDeactivated:
-        await clonedb.delete_user(bot_id, user_id)
+        await clonedb.delete_user(int(user_id))
         return False, "Deleted"
     except UserIsBlocked:
-        await clonedb.delete_user(bot_id, user_id)
+        await clonedb.delete_user(int(user_id))
         return False, "Blocked"
     except PeerIdInvalid:
-        await clonedb.delete_user(bot_id, user_id)
+        await clonedb.delete_user(int(user_id))
         return False, "Error"
     except Exception as e:
-        await clonedb.delete_user(bot_id, user_id)
+        await clonedb.delete_user(int(user_id))
         return False, "Error"
