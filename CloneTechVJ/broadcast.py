@@ -3,6 +3,8 @@
 # Ask Doubt on telegram @KingVJ01
 
 # Clone Code Credit : YT - @Tech_VJ / TG - @VJ_Bots / GitHub - @VJBots
+# At the top of your file
+broadcast_enabled = False  # Default to enabled
 
 import datetime, time, asyncio
 from pyrogram import Client, filters
@@ -10,8 +12,7 @@ from database.users_chats_db import db
 from pyrogram.errors import *
 from CloneTechVJ.database.clone_bot_userdb import clonedb
         
-# At the top of your file
-broadcast_enabled = True  # Default to enabled
+
 
 
 @Client.on_message(filters.command("enable_broadcast") & filters.user(ADMINS))
