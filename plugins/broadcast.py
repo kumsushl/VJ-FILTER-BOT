@@ -1,6 +1,8 @@
 # Don't Remove Credit @VJ_Botz
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
+# At the top of your file
+broadcast_enabled = False  # Default to enabled
 
 import datetime, time, asyncio
 from pyrogram import Client, filters
@@ -8,8 +10,6 @@ from database.users_chats_db import db
 from info import ADMINS
 from utils import broadcast_messages, broadcast_messages_group
         
-# At the top of your file
-broadcast_enabled = True  # Default to enabled
 
 
 @Client.on_message(filters.command("enable_broadcast") & filters.user(ADMINS))
