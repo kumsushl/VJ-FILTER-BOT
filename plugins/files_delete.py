@@ -21,7 +21,7 @@ async def deletemultiplemedia(bot, message):
     else:
         return
 
-    file_id, file_ref, file_unique_id = unpack_new_file_id(media.file_id)
+   file_id = unpack_new_file_id(media.file_id)
 
 
     result = col.delete_one({
