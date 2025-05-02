@@ -173,4 +173,5 @@ def unpack_new_file_id(new_file_id):
         )
     )
     return file_id
-    
+    result = unpack_new_file_id(media.file_id)
+print(result)  # Log the output to see what it returns
