@@ -174,18 +174,4 @@ def unpack_new_file_id(new_file_id):
     )
     return file_id
    
-def delete_file(file_id):
-    """Delete a file from the database."""
-    try:
-        result1 = col.delete_one({'file_id': file_id})
-        result2 = sec_col.delete_one({'file_id': file_id}) if MULTIPLE_DATABASE else None
-        
-        if result1.deleted_count or (result2 and result2.deleted_count):
-            print(f"File with ID {file_id} has been successfully deleted.")
-            return True
-        else:
-            print(f"No file found with ID {file_id}.")
-            return False
-    except Exception as e:
-        print(f"An error occurred while deleting the file: {e}")
-        return False
+
